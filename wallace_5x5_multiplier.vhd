@@ -35,8 +35,8 @@ component HA is
            C : out  STD_LOGIC);
 end component;
 
-signal s11,s12,s13,s14,s15,s22,s23,s24,s25,s26,s32,s33,s34,s35,s36,s37, s38. s39 : std_logic;
-signal c11,c12,c13,c14,c15,c22,c23,c24,c25,c26,c32,c33,c34,c35,c36,c37,c38,c39 : std_logic;
+signal s11,s12,s13,s14_fa,s14_ha,s15,s16,s22,s23,s24,s25,s26,s27,s32,s33,s34,s35,s36,s37,s38,s39,s41,s42,s43,s44,s45,s46,s47,s48,s49 : std_logic;
+signal c11,c12,c13,c14_fa, c14_ha,c15,c16,c22,c23,c24,c25,c26,c27,c32,c33,c34,c35,c36,c37,c38,c39,c41,c42,c43,c44,c45,c46,c47,c48,c49 : std_logic;
 signal p0,p1,p2,p3,p4 : std_logic_vector(4 downto 0);
 
 begin
