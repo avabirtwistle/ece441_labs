@@ -26,23 +26,39 @@ begin
   process
   begin
     a <= std_logic_vector(to_signed(3,8));
+    b <= std_logic_vector(to_signed(7,8));
+    for i in 1 to 9 loop
+      wait until rising_edge(clk);
+    end loop;
+
+    a <= std_logic_vector(to_signed(5,8));
+    b <= std_logic_vector(to_signed(-2,8));
+    for i in 1 to 9 loop
+      wait until rising_edge(clk);
+    end loop;
+
+    a <= std_logic_vector(to_signed(-2,8));
     b <= std_logic_vector(to_signed(5,8));
     for i in 1 to 9 loop
       wait until rising_edge(clk);
     end loop;
 
-    a <= std_logic_vector(to_signed(-3,8));
-    b <= std_logic_vector(to_signed(5,8));
+    a <= std_logic_vector(to_signed(2,8));
+    b <= std_logic_vector(to_signed(6,8));
     for i in 1 to 9 loop
       wait until rising_edge(clk);
     end loop;
-
-    a <= std_logic_vector(to_signed(-7,8));
-    b <= std_logic_vector(to_signed(-9,8));
+    
+    a <= std_logic_vector(to_signed(-1,8));
+    b <= std_logic_vector(to_signed(-1,8));
     for i in 1 to 9 loop
       wait until rising_edge(clk);
     end loop;
-
+    a <= std_logic_vector(to_signed(0,8));
+    b <= std_logic_vector(to_signed(0,8));
+    for i in 1 to 9 loop
+      wait until rising_edge(clk);
+    end loop;
     wait;
   end process;
 end sim;
