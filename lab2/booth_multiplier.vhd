@@ -18,7 +18,7 @@ architecture Behavioral of booth_multiplier is
     signal i         : integer range 0 to 8 := 0;
 begin
     booth_pos <= resize(signed(a), 16);
-    booth_neg <= -resize(signed(a), 16);  -- negate after resize to avoid 8-bit overflow
+    booth_neg <= -resize(signed(a), 16);  
 
     process(clk)
         variable acc_next : signed(15 downto 0);
