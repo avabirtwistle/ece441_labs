@@ -21,7 +21,7 @@ entity vga_obj_motion is
         blank_in, vsync_in: in std_logic;
         hpos, vpos: in positive range 1 to 1024;
         btn_left, btn_right: in std_logic;
-        btn_up, btn_down: in std_logic;
+        btn_up, btn_down, btn_resize: in std_logic;
         vga_red, vga_green, vga_blue: out std_logic_vector(3 downto 0)
 );
 end vga_obj_motion;
@@ -69,44 +69,61 @@ begin
 
 --
 -- size
---
-        if (btn_down='1' and btn_up='1') then
-            size <= 1;
-
-        elsif ( btn_up='0' and btn_down='1') then
-            if size<1024-8
-                size <= size+8;
+--      
+        if(btn_resize = '0') then
+            --
+            -- y axis motion
+            --
+                    if (btn_down='1' and btn_up='1') then
+                        obj_Y_motion <= 0;
+            
+                    elsif ( btn_up='0' and btn_down='1') then
+                        obj_Y_motion <= 8;
+            
+                    elsif (btn_down='0' and btn_up='1') then
+                        obj_Y_motion <= -8;
+            
+                    elsif (btn_down='0' and btn_up='0') then
+                        obj_Y_motion <= 0;
+            
+                    end if;
+            
+            --
+            --
+            -- x axis motion
+            --
+            if (btn_left='1' and btn_right='1') then
+                obj_X_motion <= 0; 
+        
+                elsif (btn_left='1' and btn_right='0') then
+                    obj_X_motion <= -8;
+        
+                elsif (btn_right='1' and btn_left='0') then
+                    obj_X_motion <= 8;
+        
+                elsif (btn_left='0' and btn_right='0') then
+                    obj_X_motion <= 0;
+        
             end if;
-
-        elsif (btn_down='0' and btn_up='1') then
-            if size>8 then
-                size <= size-8;
+                -- assigned the object x and y positions with the new moved ones
+                obj_Y_pos<=obj_Y_pos + obj_Y_motion;
+                obj_X_pos<=obj_X_pos + obj_X_motion;
+        -- resize the square
+        elsif(btn_resize = '1') then
+            if ( btn_up='0' and btn_down='1') then
+                if size<1024-8 then
+                    size <= size+8;
+                end if;
+            elsif (btn_down='0' and btn_up='1') then
+                if size>8 then
+                    size <= size-8;
+                end if;
             end if;
         end if;
-
---
--- x axis motion
---
-        if (btn_left='1' and btn_right='1') then
-            obj_X_motion <= 0;
-
-        elsif (btn_left='1' and btn_right='0') then
-            obj_X_motion <= -8;
-
-        elsif (btn_right='1' and btn_left='0') then
-            obj_X_motion <= 8;
-
-        elsif (btn_left='0' and btn_right='0') then
-            obj_X_motion <= 0;
-
-        end if;
-
-        obj_Y_pos<=obj_Y_pos + obj_Y_motion;
-        obj_X_pos<=obj_X_pos + obj_X_motion;
     end if;
-
 end process;
 
 end logic_flow;
+
 
 
