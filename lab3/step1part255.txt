@@ -54,7 +54,7 @@ architecture logic_flow of vga_exp1 is
 		blank_in: in std_logic;
 		hpos, vpos: in positive range 1 to 1024;
 		set_red, set_green, set_blue: in std_logic_vector(3 downto 0);
-		vga_red, vga_green, vga_blue: out std_logic_vector(3 downto 0);
+		vga_red, vga_green, vga_blue: out std_logic_vector(3 downto 0)
 	--	vga_blank: out std_logic
 		);
 	end component;
