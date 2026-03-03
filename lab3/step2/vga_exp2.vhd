@@ -18,7 +18,7 @@ entity vga_exp2 is
 		clk_100MHz: in std_logic;
 		hsync, vsync: out std_logic; -- output to JXADC PMOD to observe
 		btn_left, btn_right: in std_logic;
-        btn_up, btn_down: in std_logic;
+        btn_up, btn_down, btn_resize: in std_logic;
 		clk_out_25MHz: out std_logic;  -- output to JXADC PMOD to observe
 		vgaRed, vgaGreen, vgaBlue: out std_logic_vector(3 downto 0)
 		);
@@ -96,3 +96,4 @@ vsync<=vsync_signal;
 clk_out_25MHz <= clk_25MHz;
 
 end logic_flow;
+
