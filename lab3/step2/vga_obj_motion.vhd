@@ -38,7 +38,7 @@ begin
 
 obj_create: process( clk, blank_in, hpos, size, obj_x_pos, vpos, obj_y_pos )
 begin
-    if ( rising_edge( clk )) then
+    if ( rising_edge( clk )) then -- if clock edge
         if ( blank_in = '0' ) then
             if (( 0 <= ( hpos + size - obj_X_pos )) and
                 ((obj_X_pos + size - hpos) >= 0 ) and
@@ -65,23 +65,23 @@ end process;
 
 obj_move: process ( vsync_in, btn_down, btn_up, btn_left, btn_right, obj_Y_pos, obj_X_pos )
 begin
-    if( rising_edge( vsync_in ) ) then
+    if( rising_edge( vsync_in ) ) then 
 
 --
--- y axis motion
+-- size
 --
         if (btn_down='1' and btn_up='1') then
-            obj_Y_motion <= 0;
+            size <= 1;
 
         elsif ( btn_up='0' and btn_down='1') then
-            obj_Y_motion <= 8;
+            if size<1024-8
+                size <= size+8;
+            end if;
 
         elsif (btn_down='0' and btn_up='1') then
-            obj_Y_motion <= -8;
-
-        elsif (btn_down='0' and btn_up='0') then
-            obj_Y_motion <= 0;
-
+            if size>8 then
+                size <= size-8;
+            end if;
         end if;
 
 --
@@ -108,4 +108,5 @@ begin
 end process;
 
 end logic_flow;
+
 
