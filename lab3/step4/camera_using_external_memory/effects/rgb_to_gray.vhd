@@ -45,9 +45,9 @@ begin
 
 
 -----GrayScaleImage =  0.299 x Red + 0.587 x Green + 0.114 x Blue
-red_temp <= RGBin( 11 downto 8 );  --- hint: need to multiply by 0.250
-green_temp <= RGBin(7 downto 4 );  --- hint: need to multiply by 0.500
-blue_temp <= RGBin(3 downto 0 );   --- hint: need to multiply by 0.125
+red_temp   <= "00" & RGBin(11 downto 10);  -- ÷4  (× 0.250)
+green_temp <= "0"  & RGBin(7  downto 5);   -- ÷2  (× 0.500)
+blue_temp  <= "000"& RGBin(3  downto 3);   -- ÷8  (× 0.125)
 
 GrayOut_4bit_tmp <= red_temp + green_temp+ blue_temp;
 GrayOut <= GrayOut_4bit_tmp & GrayOut_4bit_tmp & GrayOut_4bit_tmp; --- 0.25 x red + 0.5 x green + 0.125 x blue
