@@ -1,0 +1,7 @@
+verilog xil_defaultlib  \
+"../../../../camera_using_external_memory.gen/sources_1/ip/line_buffer/sim/line_buffer.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
