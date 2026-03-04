@@ -44,10 +44,14 @@ signal red_div,blue_div,green_div : STD_LOGIC_VECTOR (11 downto 0);
 begin
 
 
------GrayScaleImage =  0.299 x Red + 0.587 x Green + 0.114 x Blue
-red_temp <= RGBin( 11 downto 8 );  --- hint: need to multiply by 0.250
-green_temp <= RGBin(7 downto 4 );  --- hint: need to multiply by 0.500
-blue_temp <= RGBin(3 downto 0 );   --- hint: need to multiply by 0.125
+-- Red:   RGBin(11:8) ÷ 4   = prepend "00", keep top 2 bits
+red_temp   <= "00" & RGBin(11 downto 10);
+
+-- Green: RGBin(7:4)  ÷ 2   = prepend "0",  keep top 3 bits
+green_temp <= "0"  & RGBin(7 downto 5);
+
+-- Blue:  RGBin(3:0)  ÷ 8   = prepend "000", keep top 1 bit
+blue_temp  <= "000" & RGBin(3 downto 3);
 
 GrayOut_4bit_tmp <= red_temp + green_temp+ blue_temp;
 GrayOut <= GrayOut_4bit_tmp & GrayOut_4bit_tmp & GrayOut_4bit_tmp; --- 0.25 x red + 0.5 x green + 0.125 x blue

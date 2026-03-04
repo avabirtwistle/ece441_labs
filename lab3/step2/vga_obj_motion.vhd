@@ -2,8 +2,8 @@
 --
 -- dwc ECE441 adapted from: 
 --
---  Gazi&Arli, “State Machines using VHDL
---              FPGA Implementation of Serial Communication and Display Protocols”
+--  Gazi&Arli, "State Machines using VHDL
+--              FPGA Implementation of Serial Communication and Display Protocols"
 --              ©2021 The Editor(s) (if applicable) and The Author(s)
 --              under exclusive license to Springer Nature Switzerland AG
 --
@@ -63,7 +63,7 @@ begin
     end if;
 end process;
 
-obj_move: process ( vsync_in, btn_down, btn_up, btn_left, btn_right, obj_Y_pos, obj_X_pos )
+obj_move: process ( vsync_in, btn_down, btn_up, btn_left, btn_right, obj_Y_pos, obj_X_pos, btn_resize )
 begin
     if( rising_edge( vsync_in ) ) then 
 
@@ -124,6 +124,5 @@ begin
 end process;
 
 end logic_flow;
-
 
 
